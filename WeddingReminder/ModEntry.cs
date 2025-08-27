@@ -21,20 +21,22 @@ namespace WeddingReminder
             // run whenever the player warps into the farmhouse
             helper.Events.Player.Warped += this.GameLoop_PlayerWarpFarmhouse;
         }
-
+       
         private void GameLoop_DayStarted(object sender, DayStartedEventArgs e)
         {
+            string SpouseSpecificHUDMessage = Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:" + Game1.player.spouse);
             if (Game1.player.GetSpouseFriendship() is Friendship spouse && spouse.CountdownToWedding == 1)
             {
-                Game1.addHUDMessage(new HUDMessage(Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:Default")));
+                Game1.addHUDMessage(new HUDMessage(SpouseSpecificHUDMessage));
             }
         }
 
         private void GameLoop_PlayerWarpFarmhouse(object sender, WarpedEventArgs e)
         {
+            string SpouseSpecificHUDMessage = Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:" + Game1.player.spouse);
             if (Game1.player.GetSpouseFriendship() is Friendship spouse && spouse.CountdownToWedding == 1 && e.NewLocation is FarmHouse house && house.owner == Game1.player)
             {
-                Game1.addHUDMessage(new HUDMessage(Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:Deafult")));
+                Game1.addHUDMessage(new HUDMessage(SpouseSpecificHUDMessage));
             }
         }
     } 
