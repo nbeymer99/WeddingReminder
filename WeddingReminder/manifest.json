@@ -1,0 +1,10 @@
+{
+  "Name": "Wedding Reminder",
+  "Author": "handwrittenhello",
+  "Version": "1.0.0",
+  "Description": "Sends a reminder the day before your wedding.",
+  "UniqueID": "handwrittenhello.weddingReminder",
+  "EntryDll": "WeddingReminder.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": [ "Nexus:37040" ]
+}
