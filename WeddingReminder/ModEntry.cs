@@ -24,19 +24,19 @@ namespace WeddingReminder
        
         private void GameLoop_DayStarted(object sender, DayStartedEventArgs e)
         {
-            string SpouseSpecificHUDMessage = Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:" + Game1.player.spouse);
             if (Game1.player.GetSpouseFriendship() is Friendship spouse && spouse.CountdownToWedding == 1)
             {
-                Game1.addHUDMessage(new HUDMessage(SpouseSpecificHUDMessage));
+                string SpouseSpecificHUDMessage = Game1.content.LoadStringReturnNullIfNotFound($"handwrittenhello.weddingReminder/HUDMessage:{Game1.player.spouse}") ?? Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:Default");
+                Game1.addHUDMessage(new(SpouseSpecificHUDMessage) { messageSubject = ItemRegistry.Create("(O)460") });
             }
         }
 
         private void GameLoop_PlayerWarpFarmhouse(object sender, WarpedEventArgs e)
         {
-            string SpouseSpecificHUDMessage = Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:" + Game1.player.spouse);
             if (Game1.player.GetSpouseFriendship() is Friendship spouse && spouse.CountdownToWedding == 1 && e.NewLocation is FarmHouse house && house.owner == Game1.player)
             {
-                Game1.addHUDMessage(new HUDMessage(SpouseSpecificHUDMessage));
+                string SpouseSpecificHUDMessage = Game1.content.LoadStringReturnNullIfNotFound($"handwrittenhello.weddingReminder/HUDMessage:{Game1.player.spouse}") ?? Game1.content.LoadString("handwrittenhello.weddingReminder/HUDMessage:Default");
+                Game1.addHUDMessage(new(SpouseSpecificHUDMessage) { messageSubject = ItemRegistry.Create("(O)460") });
             }
         }
     } 
